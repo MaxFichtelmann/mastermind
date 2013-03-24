@@ -10,9 +10,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>de.fichtelmax.mastermind</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>mastermind-api</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 </project>
