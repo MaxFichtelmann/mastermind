@@ -1,0 +1,4 @@
+mastermind
+==========
+
+Mastermind Sample Applications
