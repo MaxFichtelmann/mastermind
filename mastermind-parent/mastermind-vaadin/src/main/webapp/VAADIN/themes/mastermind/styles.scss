@@ -1,0 +1,31 @@
+@import "../reindeer/reindeer.scss";
+
+.mastermind {
+	@include reindeer;
+	
+	.red {
+		background-color: red;
+	}
+	.green {
+		background-color: green;
+	}
+	.yellow {
+		background-color: yellow;
+	}
+	.blue {
+		background-color: blue;
+	}
+	.purple {
+		background-color: purple;
+	}
+	.orange {
+		background-color: orange;
+	}
+	
+	.black {
+		background-color: black;
+	}
+	.white {
+		background-color: white;
+	}
+}

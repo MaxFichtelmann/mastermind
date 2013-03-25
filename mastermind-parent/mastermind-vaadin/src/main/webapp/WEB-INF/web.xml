@@ -4,7 +4,7 @@
     <context-param>
         <description>Vaadin production mode</description>
         <param-name>productionMode</param-name>
-        <param-value>true</param-value>
+        <param-value>false</param-value>
     </context-param>
     <servlet>
         <servlet-name>Vaadin</servlet-name>
@@ -12,7 +12,7 @@
         <init-param>
             <description>Vaadin UI to display</description>
             <param-name>UI</param-name>
-            <param-value>hello.World</param-value>
+            <param-value>de.fichtelmax.mastermind.vaadin.MastermindUI</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
