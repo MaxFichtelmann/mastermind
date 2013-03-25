@@ -9,6 +9,7 @@
 	<modules>
 		<module>mastermind-api</module>
 		<module>mastermind-cli-app</module>
+		<module>mastermind-vaadin</module>
 	</modules>
 
 	<properties>
