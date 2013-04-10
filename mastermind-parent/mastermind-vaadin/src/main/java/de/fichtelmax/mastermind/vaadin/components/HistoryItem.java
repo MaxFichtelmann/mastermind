@@ -5,6 +5,7 @@ import java.util.List;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 
 import de.fichtelmax.mastermind.GuessResult;
 
@@ -14,10 +15,13 @@ public class HistoryItem extends HorizontalLayout
     
     public HistoryItem( List<String> inputs, GuessResult guessResult )
     {
+        setMargin( true );
         for ( String color : inputs )
         {
-            addComponent( historyCircle( color, "50px" ) );
+            addComponent( historyCircle( color, "60px" ) );
         }
+        
+        addComponent( spacer( "10px" ) );
         addComponent( createSolutionTile( guessResult ) );
     }
     
@@ -25,7 +29,7 @@ public class HistoryItem extends HorizontalLayout
     {
         GridLayout gridLayout = new GridLayout( 2, 2 );
         
-        String solutionRadius = "25px";
+        String solutionRadius = "28px";
         for ( int i = 0; i < guessResult.getDirectHits(); i++ )
         {
             gridLayout.addComponent( historyCircle( "black", solutionRadius ) );
@@ -47,5 +51,12 @@ public class HistoryItem extends HorizontalLayout
         colorField.setHeight( radius );
         
         return colorField;
+    }
+    
+    private static Component spacer( String width )
+    {
+        Label spacer = new Label();
+        spacer.setWidth( width );
+        return spacer;
     }
 }

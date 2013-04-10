@@ -16,6 +16,8 @@ public class GuessInputField extends VerticalLayout implements DropHandler
     private static final long serialVersionUID = 4299381421651671922L;
     private Label             main;
     
+    private String            color            = null;
+    
     public GuessInputField()
     {
         main = new Label();
@@ -35,16 +37,22 @@ public class GuessInputField extends VerticalLayout implements DropHandler
     @Override
     public void drop( DragAndDropEvent event )
     {
-        System.out.println( event );
-        System.out.println( event.getTransferable() );
-        System.out.println( event.getTransferable().getSourceComponent() );
         Component sourceComponent = ((DragAndDropWrapper) event.getTransferable().getSourceComponent()).iterator().next();
         ColorField colorField = (ColorField) sourceComponent;
-        System.out.println( colorField.getColor() );
-        System.out.println( colorField.getValue() );
-        System.out.println( event.getTargetDetails() );
         
         main.setValue( colorField.getValue() );
+        color = colorField.getColor();
+    }
+    
+    public String getColor()
+    {
+        return color;
+    }
+    
+    public void clear()
+    {
+        color = null;
+        main.setValue( "" );
     }
     
     @Override
@@ -58,6 +66,7 @@ public class GuessInputField extends VerticalLayout implements DropHandler
             public boolean accept( DragAndDropEvent dragEvent )
             {
                 // TODO NYI
+                // accept all - should accept only ColorField drops
                 return true;
             }
         };

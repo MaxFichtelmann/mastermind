@@ -1,37 +1,5 @@
 @import "../reindeer/legacy-styles.css";
 
-.red {
-	background-color: red;
-}
-
-.green {
-	background-color: green;
-}
-
-.yellow {
-	background-color: yellow;
-}
-
-.blue {
-	background-color: blue;
-}
-
-.purple {
-	background-color: purple;
-}
-
-.orange {
-	background-color: orange;
-}
-
-.black {
-	background-color: black;
-}
-
-.white {
-	background-color: white;
-}
-
 .dropzone {
 	border: 5px solid rgb(140, 140, 140);
 }
@@ -53,4 +21,9 @@
 
 .circle {
 	border-radius: 50%;
+}
+
+.v-nativebutton.guess {
+	font-size: 20px;
+	font-weight: bold;
 }

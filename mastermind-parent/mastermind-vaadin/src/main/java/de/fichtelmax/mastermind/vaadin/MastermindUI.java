@@ -12,16 +12,15 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
-import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-import de.fichtelmax.mastermind.GuessResult;
 import de.fichtelmax.mastermind.vaadin.components.ColorField;
 import de.fichtelmax.mastermind.vaadin.components.ColorPickupField;
+import de.fichtelmax.mastermind.vaadin.components.GuessButton;
 import de.fichtelmax.mastermind.vaadin.components.GuessInputField;
-import de.fichtelmax.mastermind.vaadin.components.HistoryItem;
+import de.fichtelmax.mastermind.vaadin.control.MastermindController;
 
 @Theme( "mastermind" )
 @Title( "Mastermind" )
@@ -30,6 +29,16 @@ public class MastermindUI extends UI
     private static final long  serialVersionUID = -8024776458773591101L;
     
     private final List<String> colors           = Arrays.asList( "red", "green", "yellow", "blue", "purple", "orange" );
+    
+    private GuessInputField    input1;
+    
+    private GuessInputField    input2;
+    
+    private GuessInputField    input3;
+    
+    private GuessInputField    input4;
+    
+    private VerticalLayout     historyContainer;
     
     @Override
     protected void init( VaadinRequest request )
@@ -43,13 +52,18 @@ public class MastermindUI extends UI
         game.setMargin( true );
         
         Component solutionZone = createSolutionZone();
+        Component centerZone = createCenterZone();
+        Component colorPickupZone = createColorPickupZone( "90px" );
+        
+        List<GuessInputField> inputs = Arrays.asList( input1, input2, input3, input4 );
+        MastermindController controller = new MastermindController( historyContainer, inputs, colors );
+        
         solutionZone.setHeight( "100px" );
         solutionZone.setWidth( "400px" );
         game.addComponent( solutionZone, 0, 0 );
         
-        game.addComponent( createCenterZone(), 0, 1 );
+        game.addComponent( centerZone, 0, 1 );
         
-        Component colorPickupZone = createColorPickupZone( "90px" );
         Panel colorPickup = new Panel();
         colorPickup.setWidth( "100px" );
         colorPickup.setHeight( "570px" );
@@ -59,8 +73,9 @@ public class MastermindUI extends UI
         Panel guessButtonZone = new Panel();
         guessButtonZone.setWidth( "400px" );
         guessButtonZone.setHeight( "100px" );
-        Button guessButton = new NativeButton( "Guess!" );
+        Button guessButton = new GuessButton( controller );
         guessButton.setSizeFull();
+        guessButton.addStyleName( "guess" );
         guessButtonZone.setContent( guessButton );
         game.addComponent( guessButtonZone, 0, 2 );
         
@@ -119,24 +134,22 @@ public class MastermindUI extends UI
     
     private Component createHistoryZone()
     {
-        List<String> guess1 = Arrays.asList( "red", "green", "red", "yellow" );
-        GuessResult result1 = new GuessResult( 0, 1 );
-        List<String> guess2 = Arrays.asList( "green", "red", "blue", "blue" );
-        GuessResult result2 = new GuessResult( 2, 1 );
+        historyContainer = new VerticalLayout();
         
-        VerticalLayout layout = new VerticalLayout();
-        layout.addComponent( new HistoryItem( guess1, result1 ) );
-        layout.addComponent( new HistoryItem( guess2, result2 ) );
-        return layout;
+        // needed for scroll support
+        Panel historyZone = new Panel();
+        historyZone.setContent( historyContainer );
+        historyZone.setHeight( "470px" );
+        return historyZone;
     }
     
     private Component createGuessInputZone()
     {
         HorizontalLayout guessInput = new HorizontalLayout();
-        GuessInputField input1 = new GuessInputField();
-        GuessInputField input2 = new GuessInputField();
-        GuessInputField input3 = new GuessInputField();
-        GuessInputField input4 = new GuessInputField();
+        input1 = new GuessInputField();
+        input2 = new GuessInputField();
+        input3 = new GuessInputField();
+        input4 = new GuessInputField();
         
         guessInput.addComponent( input1 );
         guessInput.addComponent( input2 );
