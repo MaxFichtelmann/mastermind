@@ -1,25 +1,31 @@
 package de.fichtelmax.mastermind.vaadin;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
+
+import org.apache.commons.io.IOUtils;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-import de.fichtelmax.mastermind.vaadin.components.ColorField;
 import de.fichtelmax.mastermind.vaadin.components.ColorPickupField;
 import de.fichtelmax.mastermind.vaadin.components.GuessButton;
 import de.fichtelmax.mastermind.vaadin.components.GuessInputField;
+import de.fichtelmax.mastermind.vaadin.components.SolutionZone;
 import de.fichtelmax.mastermind.vaadin.control.MastermindController;
 
 @Theme( "mastermind" )
@@ -43,7 +49,7 @@ public class MastermindUI extends UI
     @Override
     protected void init( VaadinRequest request )
     {
-        Layout main = new VerticalLayout();
+        Layout main = new HorizontalLayout();
         setContent( main );
         
         main.setSizeFull();
@@ -51,12 +57,12 @@ public class MastermindUI extends UI
         GridLayout game = new GridLayout( 2, 3 );
         game.setMargin( true );
         
-        Component solutionZone = createSolutionZone();
+        SolutionZone solutionZone = new SolutionZone();
         Component centerZone = createCenterZone();
         Component colorPickupZone = createColorPickupZone( "90px" );
         
         List<GuessInputField> inputs = Arrays.asList( input1, input2, input3, input4 );
-        MastermindController controller = new MastermindController( historyContainer, inputs, colors );
+        MastermindController controller = new MastermindController( historyContainer, inputs, colors, solutionZone );
         
         solutionZone.setHeight( "100px" );
         solutionZone.setWidth( "400px" );
@@ -80,25 +86,20 @@ public class MastermindUI extends UI
         game.addComponent( guessButtonZone, 0, 2 );
         
         main.addComponent( game );
-    }
-    
-    private Component createSolutionZone()
-    {
-        HorizontalLayout solution = new HorizontalLayout();
         
-        for ( int i = 0; i < 4; i++ )
+        InputStream readmeStream = MastermindUI.class.getResourceAsStream( "/README.txt" );
+        try
         {
-            ColorField field = new ColorField( "rgb(192,192,192)" );
-            field.addStyleName( "solution" );
-            field.addStyleName( "circle" );
-            field.setWidth( "90px" );
-            field.setHeight( "90px" );
-            solution.addComponent( field );
+            String readme = IOUtils.toString( readmeStream );
+            
+            Label readmeLabel = new Label( readme, ContentMode.HTML );
+            
+            main.addComponent( readmeLabel );
         }
-        
-        Panel panel = new Panel();
-        panel.setContent( solution );
-        return panel;
+        catch ( IOException e )
+        {
+            throw new RuntimeException( e );
+        }
     }
     
     private Component createColorPickupZone( String size )

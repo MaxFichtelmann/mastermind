@@ -1,7 +1,7 @@
 @import "../reindeer/legacy-styles.css";
 
 .dropzone {
-	border: 5px solid rgb(140, 140, 140);
+	border: 4px solid rgb(140, 140, 140);
 }
 
 .pickup {

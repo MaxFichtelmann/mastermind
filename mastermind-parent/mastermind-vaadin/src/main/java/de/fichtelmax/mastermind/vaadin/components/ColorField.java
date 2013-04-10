@@ -11,12 +11,23 @@ public class ColorField extends Label
     
     public ColorField( String color )
     {
-        super( "<div style=\"width:100%;height:100%;background-color:" + color + ";\"/>", ContentMode.HTML );
+        super( buildValue( color ), ContentMode.HTML );
         this.color = color;
+    }
+    
+    public void setColor( String color )
+    {
+        this.color = color;
+        setValue( buildValue( color ) );
     }
     
     public String getColor()
     {
         return color;
+    }
+    
+    private static String buildValue( String color )
+    {
+        return "<div style=\"width:100%;height:100%;background-color:" + color + ";\"/>";
     }
 }

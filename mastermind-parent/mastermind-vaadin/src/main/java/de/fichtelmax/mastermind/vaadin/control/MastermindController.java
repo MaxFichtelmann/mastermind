@@ -9,23 +9,30 @@ import de.fichtelmax.mastermind.GuessResult;
 import de.fichtelmax.mastermind.Mastermind;
 import de.fichtelmax.mastermind.vaadin.components.GuessInputField;
 import de.fichtelmax.mastermind.vaadin.components.HistoryItem;
+import de.fichtelmax.mastermind.vaadin.components.SolutionZone;
 
 public class MastermindController
 {
+    private static final int            SIZE = 4;
     private Mastermind<String>          mastermind;
     private final AbstractOrderedLayout historyPane;
     private List<GuessInputField>       inputs;
+    private List<String>                colorOptions;
+    private SolutionZone                solutionZone;
     
-    public MastermindController( AbstractOrderedLayout historyPane, List<GuessInputField> inputs, List<String> colorOptions )
+    public MastermindController( AbstractOrderedLayout historyPane, List<GuessInputField> inputs, List<String> colorOptions,
+            SolutionZone solutionZone )
     {
         this.historyPane = historyPane;
         this.inputs = inputs;
-        this.mastermind = Mastermind.randomSolution( 4, colorOptions );
+        this.colorOptions = colorOptions;
+        this.solutionZone = solutionZone;
+        this.mastermind = Mastermind.randomSolution( SIZE, colorOptions );
     }
     
-    public void guess()
+    public boolean guess()
     {
-        List<String> guess = new ArrayList<>( 4 );
+        List<String> guess = new ArrayList<>( SIZE );
         
         for ( GuessInputField input : inputs )
         {
@@ -35,12 +42,22 @@ public class MastermindController
         GuessResult result = mastermind.guess( guess );
         
         historyPane.addComponent( new HistoryItem( guess, result ), 0 );
+        
+        boolean success = result.getDirectHits() == SIZE;
+        
+        if ( success )
+        {
+            solutionZone.showSolution( guess );
+        }
+        
+        return success;
     }
     
-    public void newGame( List<String> colorOptions )
+    public void newGame()
     {
-        mastermind = Mastermind.randomSolution( 4, colorOptions );
+        mastermind = Mastermind.randomSolution( SIZE, colorOptions );
         historyPane.removeAllComponents();
+        solutionZone.hideSolution();
         
         for ( GuessInputField input : inputs )
         {
