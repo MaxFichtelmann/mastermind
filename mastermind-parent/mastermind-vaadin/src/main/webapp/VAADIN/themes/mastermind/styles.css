@@ -1,0 +1,56 @@
+@import "../reindeer/legacy-styles.css";
+
+.red {
+	background-color: red;
+}
+
+.green {
+	background-color: green;
+}
+
+.yellow {
+	background-color: yellow;
+}
+
+.blue {
+	background-color: blue;
+}
+
+.purple {
+	background-color: purple;
+}
+
+.orange {
+	background-color: orange;
+}
+
+.black {
+	background-color: black;
+}
+
+.white {
+	background-color: white;
+}
+
+.dropzone {
+	border: 5px solid rgb(140, 140, 140);
+}
+
+.pickup {
+	margin: 2px;
+}
+
+.solution {
+	border: 4px solid rgb(140, 140, 140);
+	margin: 4px;
+	margin-left: 5px;
+}
+
+.history {
+	border: 1px solid rgb(0, 0, 0);
+	margin: 1px;
+}
+
+.circle {
+	border-radius: 50%;
+}

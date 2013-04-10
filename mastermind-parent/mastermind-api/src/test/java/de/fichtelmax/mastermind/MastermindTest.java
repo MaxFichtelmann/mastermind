@@ -14,55 +14,62 @@ import de.fichtelmax.mastermind.GuessResult;
 import de.fichtelmax.mastermind.Mastermind;
 import de.fichtelmax.mastermind.test.Item;
 
-public class MastermindTest {
-
-	@Before
-	public void setup() {
-		new Mastermind<>(A, D, F, S);
-	}
-
-	@Test
-	public void successAllSame() {
-		Mastermind<Item> mastermind = new Mastermind<>(A, A, A, A);
-		GuessResult result = mastermind.guess(A, A, A, A);
-
-		assertThat(result.getDirectHits(), is(4));
-		assertThat(result.getColorHits(), is(0));
-	}
-
-	@Test
-	public void successAllOther() {
-		Mastermind<Item> mastermind = new Mastermind<>(A, D, F, S);
-		GuessResult result = mastermind.guess(A, D, F, S);
-
-		assertThat(result.getDirectHits(), is(4));
-		assertThat(result.getColorHits(), is(0));
-	}
-
-	@Test
-	public void successFewOther() {
-		Mastermind<Item> mastermind = new Mastermind<>(A, D, D, S);
-		GuessResult result = mastermind.guess(A, D, D, S);
-
-		assertThat(result.getDirectHits(), is(4));
-		assertThat(result.getColorHits(), is(0));
-	}
-
-	@Test
-	public void noSuccessAllSame() {
-		Mastermind<Item> mastermind = new Mastermind<>(A, A, A, A);
-		GuessResult result = mastermind.guess(S, S, S, S);
-
-		assertThat(result.getDirectHits(), is(0));
-		assertThat(result.getColorHits(), is(0));
-	}
-
-	@Test
-	public void noSuccessAllOther() {
-		Mastermind<Item> mastermind = new Mastermind<>(A, D, F, S);
-		GuessResult result = mastermind.guess(S, A, D, F);
-
-		assertThat(result.getDirectHits(), is(0));
-		assertThat(result.getColorHits(), is(4));
-	}
+public class MastermindTest
+{
+    
+    @Before
+    public void setup()
+    {
+        new Mastermind<>( A, D, F, S );
+    }
+    
+    @Test
+    public void successAllSame()
+    {
+        Mastermind<Item> mastermind = new Mastermind<>( A, A, A, A );
+        GuessResult result = mastermind.guess( A, A, A, A );
+        
+        assertThat( result.getDirectHits(), is( 4 ) );
+        assertThat( result.getColorHits(), is( 0 ) );
+    }
+    
+    @Test
+    public void successAllOther()
+    {
+        Mastermind<Item> mastermind = new Mastermind<>( A, D, F, S );
+        GuessResult result = mastermind.guess( A, D, F, S );
+        
+        assertThat( result.getDirectHits(), is( 4 ) );
+        assertThat( result.getColorHits(), is( 0 ) );
+    }
+    
+    @Test
+    public void successFewOther()
+    {
+        Mastermind<Item> mastermind = new Mastermind<>( A, D, D, S );
+        GuessResult result = mastermind.guess( A, D, D, S );
+        
+        assertThat( result.getDirectHits(), is( 4 ) );
+        assertThat( result.getColorHits(), is( 0 ) );
+    }
+    
+    @Test
+    public void noSuccessAllSame()
+    {
+        Mastermind<Item> mastermind = new Mastermind<>( A, A, A, A );
+        GuessResult result = mastermind.guess( S, S, S, S );
+        
+        assertThat( result.getDirectHits(), is( 0 ) );
+        assertThat( result.getColorHits(), is( 0 ) );
+    }
+    
+    @Test
+    public void noSuccessAllOther()
+    {
+        Mastermind<Item> mastermind = new Mastermind<>( A, D, F, S );
+        GuessResult result = mastermind.guess( S, A, D, F );
+        
+        assertThat( result.getDirectHits(), is( 0 ) );
+        assertThat( result.getColorHits(), is( 4 ) );
+    }
 }
