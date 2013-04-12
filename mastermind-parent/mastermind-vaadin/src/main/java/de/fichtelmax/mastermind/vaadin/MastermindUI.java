@@ -35,7 +35,13 @@ public class MastermindUI extends UI
 {
     private static final long  serialVersionUID = -8024776458773591101L;
     
-    private final List<String> colors           = Arrays.asList( "red", "green", "yellow", "blue", "purple", "orange" );
+    private final List<String> colors           = Arrays.asList( "#ff4500", // red
+                                                        "green", // green
+                                                        "#ffd700", // yellow
+                                                        "#000080", // blue
+                                                        "#7b68ee", // purple
+                                                        "#9acd32" // yellow green
+                                                );
     
     private GuessInputField    input1;
     

@@ -1,5 +1,13 @@
 @import "../reindeer/legacy-styles.css";
 
+.v-app {
+	background: rgb(235,235,235);
+}
+
+.v-panel-content {
+	background: rgb(245,245,245);
+}
+
 .dropzone {
 	border: 4px solid rgb(140, 140, 140);
 }
