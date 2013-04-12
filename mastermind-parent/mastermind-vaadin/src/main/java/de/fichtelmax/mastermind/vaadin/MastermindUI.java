@@ -56,7 +56,7 @@ public class MastermindUI extends UI
     @Override
     protected void init( VaadinRequest request )
     {
-        Layout main = new HorizontalLayout();
+        HorizontalLayout main = new HorizontalLayout();
         setContent( main );
         
         main.setSizeFull();
@@ -93,6 +93,7 @@ public class MastermindUI extends UI
         game.addComponent( guessButtonZone, 0, 2 );
         
         main.addComponent( game );
+        main.setComponentAlignment( game, Alignment.TOP_CENTER );
         
         InputStream readmeStream = MastermindUI.class.getResourceAsStream( "/README.md" );
         try
