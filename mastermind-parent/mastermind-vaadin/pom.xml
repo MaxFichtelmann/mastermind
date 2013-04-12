@@ -9,13 +9,13 @@
 	</parent>
 	<artifactId>mastermind-vaadin</artifactId>
 	<packaging>war</packaging>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<vaadin.version>7.0.0</vaadin.version>
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>com.vaadin</groupId>
@@ -39,6 +39,11 @@
 			<version>${vaadin.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.vaadin.addons</groupId>
+			<artifactId>extendedlabel</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.4</version>
@@ -54,8 +59,20 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
+		<dependency>
+			<groupId>com.github.rjeschke</groupId>
+			<artifactId>txtmark</artifactId>
+			<version>0.8</version>
+		</dependency>
 	</dependencies>
-	
+
+	<repositories>
+		<repository>
+			<id>vaadin-addons</id>
+			<url>http://maven.vaadin.com/vaadin-addons</url>
+		</repository>
+	</repositories>
+
 	<build>
 		<plugins>
 			<plugin>

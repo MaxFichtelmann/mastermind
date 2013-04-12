@@ -6,11 +6,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.vaadin.addon.extendedlabel.ExtendedContentMode;
+import org.vaadin.addon.extendedlabel.ExtendedLabel;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
@@ -87,12 +88,12 @@ public class MastermindUI extends UI
         
         main.addComponent( game );
         
-        InputStream readmeStream = MastermindUI.class.getResourceAsStream( "/README.txt" );
+        InputStream readmeStream = MastermindUI.class.getResourceAsStream( "/README.md" );
         try
         {
             String readme = IOUtils.toString( readmeStream );
             
-            Label readmeLabel = new Label( readme, ContentMode.HTML );
+            Label readmeLabel = new ExtendedLabel( readme, ExtendedContentMode.MARKDOWN );
             
             main.addComponent( readmeLabel );
         }
