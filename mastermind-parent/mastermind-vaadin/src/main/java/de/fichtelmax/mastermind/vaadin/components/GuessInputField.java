@@ -4,12 +4,25 @@ import com.vaadin.event.dd.DragAndDropEvent;
 import com.vaadin.event.dd.DropHandler;
 import com.vaadin.event.dd.acceptcriteria.AcceptCriterion;
 import com.vaadin.event.dd.acceptcriteria.ServerSideCriterion;
+import com.vaadin.shared.ui.dd.HorizontalDropLocation;
+import com.vaadin.shared.ui.dd.VerticalDropLocation;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.DragAndDropWrapper;
+import com.vaadin.ui.DragAndDropWrapper.WrapperTargetDetails;
+import com.vaadin.ui.DragAndDropWrapper.WrapperTransferable;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
+/**
+ * A Dropzone for ColorFields wrapped by a {@link DragAndDropWrapper}.
+ * <p>
+ * When a {@link ColorField} is dropped on this component, it takes on its color.
+ * </p>
+ * 
+ * @author Max Fichtelmann
+ * 
+ */
 public class GuessInputField extends VerticalLayout implements DropHandler
 {
     
@@ -18,14 +31,20 @@ public class GuessInputField extends VerticalLayout implements DropHandler
     
     private String            color            = null;
     
-    public GuessInputField()
+    /**
+     * creates a new {@link GuessInputField} with the specified radius.
+     * 
+     * @param radius
+     *            the radius of the visible component. 4px in height/width are added for the DDWrapper.
+     */
+    public GuessInputField( String radius )
     {
         main = new Label();
         main.setContentMode( ContentMode.HTML );
         main.addStyleName( "circle" );
         main.addStyleName( "dropzone" );
-        main.setWidth( "90px" );
-        main.setHeight( "90px" );
+        main.setWidth( radius );
+        main.setHeight( radius );
         
         DragAndDropWrapper dropWrapper = new DragAndDropWrapper( main );
         dropWrapper.setDropHandler( this );
@@ -65,9 +84,19 @@ public class GuessInputField extends VerticalLayout implements DropHandler
             @Override
             public boolean accept( DragAndDropEvent dragEvent )
             {
-                // TODO NYI
-                // accept all - should accept only ColorField drops
-                return true;
+                WrapperTargetDetails targetDetails = (WrapperTargetDetails) dragEvent.getTargetDetails();
+                WrapperTransferable transferable = (WrapperTransferable) dragEvent.getTransferable();
+                
+                if ( targetDetails.getHorizontalDropLocation() == HorizontalDropLocation.CENTER
+                        && targetDetails.getVerticalDropLocation() == VerticalDropLocation.MIDDLE
+                        && transferable.getDraggedComponent() instanceof ColorField )
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         };
     }

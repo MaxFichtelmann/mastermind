@@ -8,11 +8,26 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 
 import de.fichtelmax.mastermind.GuessResult;
+import de.fichtelmax.mastermind.Mastermind;
 
+/**
+ * A Component representing a previous guess along with the resulting hints.
+ * 
+ * @author Max Fichtelmann
+ * 
+ */
 public class HistoryItem extends HorizontalLayout
 {
     private static final long serialVersionUID = -4625192233079713428L;
     
+    /**
+     * creates a new {@link HistoryItem} with the given input and the given result.
+     * 
+     * @param inputs
+     *            the input guess
+     * @param guessResult
+     *            the hints delivered by {@link Mastermind}.
+     */
     public HistoryItem( List<String> inputs, GuessResult guessResult )
     {
         setMargin( true );

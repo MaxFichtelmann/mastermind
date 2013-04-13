@@ -6,6 +6,12 @@ import java.util.List;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Panel;
 
+/**
+ * A Panel of a stylized solution template, which can show the actual solution in color.
+ * 
+ * @author Max Fichtelmann
+ * 
+ */
 public class SolutionZone extends Panel
 {
     private static final String DEFAULT_GREY     = "rgb(192,192,192)";
@@ -14,6 +20,9 @@ public class SolutionZone extends Panel
     
     private List<ColorField>    fields           = new ArrayList<>();
     
+    /**
+     * create a new Solution in state hidden.
+     */
     public SolutionZone()
     {
         HorizontalLayout solution = new HorizontalLayout();
@@ -28,6 +37,12 @@ public class SolutionZone extends Panel
         setContent( solution );
     }
     
+    /**
+     * display the given solution
+     * 
+     * @param colors
+     *            the solutions colors.
+     */
     public void showSolution( List<String> colors )
     {
         for ( int i = 0; i < colors.size(); i++ )
@@ -36,6 +51,9 @@ public class SolutionZone extends Panel
         }
     }
     
+    /**
+     * hide the solution.
+     */
     public void hideSolution()
     {
         for ( ColorField field : fields )
