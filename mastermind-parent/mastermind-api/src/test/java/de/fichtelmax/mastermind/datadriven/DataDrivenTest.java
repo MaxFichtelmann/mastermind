@@ -9,6 +9,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -21,10 +22,9 @@ import org.junit.runners.Parameterized.Parameters;
 
 import de.fichtelmax.mastermind.GuessResult;
 import de.fichtelmax.mastermind.Mastermind;
-import de.fichtelmax.mastermind.MastermindImpl;
 
 @RunWith( Parameterized.class )
-public class DataDrivenTest
+public abstract class DataDrivenTest
 {
     @Parameters
     public static Collection<Object[]> collectTestData() throws JAXBException
@@ -56,7 +56,7 @@ public class DataDrivenTest
     @Test
     public void test()
     {
-        Mastermind<String> mastermind = new MastermindImpl<>( testData.getSolution() );
+        Mastermind<String> mastermind = newMastermind( testData.getSolution() );
         
         try
         {
@@ -81,4 +81,5 @@ public class DataDrivenTest
         }
     }
     
+    protected abstract Mastermind<String> newMastermind( List<String> solution );
 }

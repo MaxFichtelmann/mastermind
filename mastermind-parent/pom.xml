@@ -10,6 +10,7 @@
 		<module>mastermind-api</module>
 		<module>mastermind-cli-app</module>
 		<module>mastermind-vaadin</module>
+		<module>mastermind-scala-api</module>
 	</modules>
 
 	<properties>
