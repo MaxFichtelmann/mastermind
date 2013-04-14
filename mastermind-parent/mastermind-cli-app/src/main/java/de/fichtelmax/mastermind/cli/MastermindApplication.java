@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import de.fichtelmax.mastermind.GuessResult;
 import de.fichtelmax.mastermind.Mastermind;
+import de.fichtelmax.mastermind.MastermindImpl;
 
 public class MastermindApplication
 {
@@ -14,7 +15,7 @@ public class MastermindApplication
     {
         final Scanner scanner = new Scanner( System.in );
         
-        Mastermind<String> mastermind = new Mastermind<>( "a", "s", "d", "f" );
+        Mastermind<String> mastermind = new MastermindImpl<>( "a", "s", "d", "f" );
         
         GuessResult guessResult;
         do

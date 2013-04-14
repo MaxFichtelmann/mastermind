@@ -2,7 +2,7 @@ package de.fichtelmax.mastermind.vaadin.mvp.view;
 
 public interface SolutionView
 {
-    String createSolutionItem();
+    void createSolutionItem( String itemId );
     
     void setItemColor( String itemId, String color );
     

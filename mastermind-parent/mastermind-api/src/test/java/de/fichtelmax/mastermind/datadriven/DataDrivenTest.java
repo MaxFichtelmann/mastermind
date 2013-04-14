@@ -21,6 +21,7 @@ import org.junit.runners.Parameterized.Parameters;
 
 import de.fichtelmax.mastermind.GuessResult;
 import de.fichtelmax.mastermind.Mastermind;
+import de.fichtelmax.mastermind.MastermindImpl;
 
 @RunWith( Parameterized.class )
 public class DataDrivenTest
@@ -55,7 +56,7 @@ public class DataDrivenTest
     @Test
     public void test()
     {
-        Mastermind<String> mastermind = new Mastermind<>( testData.getSolution() );
+        Mastermind<String> mastermind = new MastermindImpl<>( testData.getSolution() );
         
         try
         {

@@ -7,6 +7,7 @@ import com.vaadin.ui.AbstractOrderedLayout;
 
 import de.fichtelmax.mastermind.GuessResult;
 import de.fichtelmax.mastermind.Mastermind;
+import de.fichtelmax.mastermind.MastermindImpl;
 import de.fichtelmax.mastermind.vaadin.components.GuessInputField;
 import de.fichtelmax.mastermind.vaadin.components.HistoryItem;
 import de.fichtelmax.mastermind.vaadin.components.SolutionZone;
@@ -27,7 +28,7 @@ public class MastermindController
         this.inputs = inputs;
         this.colorOptions = colorOptions;
         this.solutionZone = solutionZone;
-        this.mastermind = Mastermind.randomSolution( SIZE, colorOptions );
+        this.mastermind = MastermindImpl.randomSolution( SIZE, colorOptions );
     }
     
     public boolean guess()
@@ -55,7 +56,7 @@ public class MastermindController
     
     public void newGame()
     {
-        mastermind = Mastermind.randomSolution( SIZE, colorOptions );
+        mastermind = MastermindImpl.randomSolution( SIZE, colorOptions );
         historyPane.removeAllComponents();
         solutionZone.hideSolution();
         
