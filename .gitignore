@@ -3,4 +3,5 @@ target/
 .metadata
 .classpath
 .settings/
+.cache
 *~

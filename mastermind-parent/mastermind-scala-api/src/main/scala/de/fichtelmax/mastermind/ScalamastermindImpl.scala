@@ -4,11 +4,11 @@ import scala.collection.JavaConversions._
 
 class ScalamastermindImpl[T](solution: List[T]) extends Mastermind[T] {
 
-  def guess(guess: java.util.List[T]): GuessResult = {
+  override def guess(guess: java.util.List[T]): GuessResult = {
     scalaGuess(guess.toList)
   }
 
-  def guess(guess: T*): GuessResult = {
+  override def guess(guess: T*): GuessResult = {
     scalaGuess(guess.toList)
   }
 
