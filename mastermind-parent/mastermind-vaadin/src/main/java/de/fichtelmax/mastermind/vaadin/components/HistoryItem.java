@@ -8,7 +8,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 
 import de.fichtelmax.mastermind.GuessResult;
-import de.fichtelmax.mastermind.Mastermind;
+import de.fichtelmax.mastermind.MastermindImpl;
 
 /**
  * A Component representing a previous guess along with the resulting hints.
@@ -26,7 +26,7 @@ public class HistoryItem extends HorizontalLayout
      * @param inputs
      *            the input guess
      * @param guessResult
-     *            the hints delivered by {@link Mastermind}.
+     *            the hints delivered by {@link MastermindImpl}.
      */
     public HistoryItem( List<String> inputs, GuessResult guessResult )
     {

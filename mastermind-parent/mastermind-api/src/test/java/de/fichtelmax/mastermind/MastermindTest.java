@@ -10,8 +10,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.fichtelmax.mastermind.GuessResult;
-import de.fichtelmax.mastermind.Mastermind;
 import de.fichtelmax.mastermind.test.Item;
 
 public class MastermindTest
@@ -20,13 +18,13 @@ public class MastermindTest
     @Before
     public void setup()
     {
-        new Mastermind<>( A, D, F, S );
+        new MastermindImpl<>( A, D, F, S );
     }
     
     @Test
     public void successAllSame()
     {
-        Mastermind<Item> mastermind = new Mastermind<>( A, A, A, A );
+        Mastermind<Item> mastermind = new MastermindImpl<>( A, A, A, A );
         GuessResult result = mastermind.guess( A, A, A, A );
         
         assertThat( result.getDirectHits(), is( 4 ) );
@@ -36,7 +34,7 @@ public class MastermindTest
     @Test
     public void successAllOther()
     {
-        Mastermind<Item> mastermind = new Mastermind<>( A, D, F, S );
+        Mastermind<Item> mastermind = new MastermindImpl<>( A, D, F, S );
         GuessResult result = mastermind.guess( A, D, F, S );
         
         assertThat( result.getDirectHits(), is( 4 ) );
@@ -46,7 +44,7 @@ public class MastermindTest
     @Test
     public void successFewOther()
     {
-        Mastermind<Item> mastermind = new Mastermind<>( A, D, D, S );
+        Mastermind<Item> mastermind = new MastermindImpl<>( A, D, D, S );
         GuessResult result = mastermind.guess( A, D, D, S );
         
         assertThat( result.getDirectHits(), is( 4 ) );
@@ -56,7 +54,7 @@ public class MastermindTest
     @Test
     public void noSuccessAllSame()
     {
-        Mastermind<Item> mastermind = new Mastermind<>( A, A, A, A );
+        Mastermind<Item> mastermind = new MastermindImpl<>( A, A, A, A );
         GuessResult result = mastermind.guess( S, S, S, S );
         
         assertThat( result.getDirectHits(), is( 0 ) );
@@ -66,7 +64,7 @@ public class MastermindTest
     @Test
     public void noSuccessAllOther()
     {
-        Mastermind<Item> mastermind = new Mastermind<>( A, D, F, S );
+        Mastermind<Item> mastermind = new MastermindImpl<>( A, D, F, S );
         GuessResult result = mastermind.guess( S, A, D, F );
         
         assertThat( result.getDirectHits(), is( 0 ) );

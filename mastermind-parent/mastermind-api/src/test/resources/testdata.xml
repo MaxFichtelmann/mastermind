@@ -1,0 +1,70 @@
+<testData>
+	<!-- positive tests -->
+	<item>
+		<solution>A A A A</solution>
+		<guess>A A A A</guess>
+		<expectedDirect>4</expectedDirect>
+		<expectedColor>0</expectedColor>
+	</item>
+	<item>
+		<solution>A B C D</solution>
+		<guess>A B C D</guess>
+		<expectedDirect>4</expectedDirect>
+		<expectedColor>0</expectedColor>
+	</item>
+	<item>
+		<solution>A A B B</solution>
+		<guess>A A B B</guess>
+		<expectedDirect>4</expectedDirect>
+		<expectedColor>0</expectedColor>
+	</item>
+	<item>
+		<solution>A B B C</solution>
+		<guess>A B B C</guess>
+		<expectedDirect>4</expectedDirect>
+		<expectedColor>0</expectedColor>
+	</item>
+	<!-- color hits -->
+	<item>
+		<solution>A B C D</solution>
+		<guess>D C B A</guess>
+		<expectedDirect>0</expectedDirect>
+		<expectedColor>4</expectedColor>
+	</item>
+	<item>
+		<solution>A A B B</solution>
+		<guess>B B A A</guess>
+		<expectedDirect>0</expectedDirect>
+		<expectedColor>4</expectedColor>
+	</item>
+	<item>
+		<solution>A A B B</solution>
+		<guess>B B C C</guess>
+		<expectedDirect>0</expectedDirect>
+		<expectedColor>2</expectedColor>
+	</item>
+	<!-- no hits -->
+	<item>
+		<solution>A A A A</solution>
+		<guess>B B B B</guess>
+		<expectedDirect>0</expectedDirect>
+		<expectedColor>0</expectedColor>
+	</item>
+	<item>
+		<solution>A B C D</solution>
+		<guess>E F G H</guess>
+		<expectedDirect>0</expectedDirect>
+		<expectedColor>0</expectedColor>
+	</item>
+	<!-- invalid input -->
+	<item>
+		<solution>A A B B</solution>
+		<guess>A A B</guess>
+		<expectedException>java.lang.IllegalArgumentException</expectedException>
+	</item>
+	<item>
+		<solution>A A B B</solution>
+		<guess>A A B B B</guess>
+		<expectedException>java.lang.IllegalArgumentException</expectedException>
+	</item>
+</testData>
